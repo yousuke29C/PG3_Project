@@ -11,7 +11,7 @@ T Min(T a, T b) {
 	}
 
 	return 0;
-}
+} 
 
 template<>
 char Min<char>(char a, char b) {
