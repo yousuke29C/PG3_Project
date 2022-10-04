@@ -6,10 +6,9 @@ T Min(T a, T b) {
 	if (b > a) {
 		return static_cast<T>(a);
 	}
-	else if (a > b) {
+	else {
 		return static_cast<T>(b);
 	}
-
 	return 0;
 } 
 
