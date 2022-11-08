@@ -1,40 +1,74 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <windows.h>
+#include <random>
+#include <ctype.h>
 #include <time.h>
+#include <functional>
 
-typedef void(*PFunc)(int*);
+using namespace std;
 
-void DiceResult(int* n) {
+/// <summary>
+/// 待機
+/// </summary>
+/// <param name="second">待機する秒数</param>
+void SetTimeout(int second) {
+	Sleep(second * 1000);
+}
+
+int main(int arge, const char* argv[]) {
+	
 	srand(time(nullptr));
-	int dice = rand() % 5 + 1;
 
-	if (dice % 2 == 0) {
-		printf("アタリ\n");
+	int num;//プレイヤー
+	int answer = rand() % 6 + 1;//ダイス
+
+	//変数diceに1～6までの値がランダムで入る
+	function<int(int)> dice = [](int x) {return x; };
+
+	function<void(int)> timer = SetTimeout;
+
+	printf("奇数(半)なら「１」偶数(丁)なら「２」を入力して下さい\n\n");
+	num = getchar();//値を得る
+	printf("\n");
+
+	if (isdigit(num)) {
+		// 入力
+		printf("入力したのは : %c\n\n", num);//取得した値
 	}
 	else {
-		printf("ハズレ\n");
+		printf("%c は数字ではありません\n", num);
+		return 1;
 	}
 
-	printf("サイコロの結果 → %d\n", dice);
-}
+	timer(3);//3秒待つ
 
-void SetTimeout(PFunc p, int secound, int number) {
-	Sleep(secound);
-	p(&number);
-}
+	printf("結果 : %d\n\n", dice(answer));//結果
 
-int main(void) {
-	PFunc p;
+	//偶数なら
+	if (dice(answer) % 2 == 0) {
+		printf("丁\n\n");
 
-	int number = 0;     // 番号
-	int secound = 3000; // 秒数
-
-	printf("半(奇数)だと思ったら [ 1 ] 、 丁(偶数)だと思ったら [ 0 ]を入力してください\n↓\n");
-	scanf_s("[ %d ]", &number);
-
-	p = DiceResult;
-	SetTimeout(p, secound, number);
+		//偶数なら
+		if (num % 2 == 0) {
+			printf("当たり\n");
+		}
+		//奇数なら
+		else {
+			printf("はずれ\n");
+		}
+	}
+	//奇数なら
+	else {
+		printf("半\n\n");
+		//偶数なら
+		if (num % 2 == 0) {
+			printf("はずれ\n");
+		}
+		//奇数なら
+		else {
+			printf("当たり\n");
+		}
+	}
 
 	return 0;
 }
