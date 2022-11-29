@@ -28,7 +28,7 @@ int main()
 	//西日暮里を追加
 	for (auto itr = Station.begin(); itr != Station.end(); ++itr)
 	{
-		if (*itr == "Tabata")
+		if (strcmp( *itr , "Tabata")== 0)
 		{
 			itr = Station.insert(itr, "Nishinippori");
 			itr++;
@@ -44,7 +44,7 @@ int main()
 	//高輪ゲートウェイを追加
 	for (auto itr = Station.begin(); itr != Station.end(); ++itr)
 	{
-		if (*itr == "Tamachi")
+		if (strcmp(*itr, "Tamachi") == 0)
 		{
 			itr = Station.insert(itr, "Takanawa Gateway");
 			itr++;
