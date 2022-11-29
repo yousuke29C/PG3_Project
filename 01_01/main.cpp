@@ -1,63 +1,55 @@
-#include <stdlib.h>
-#include <list>//listƒRƒ“ƒeƒi
-#include <iterator>
-#include <string>
-#include <iostream>
+ï»¿#include <stdio.h>
+#include<stdlib.h>
 
-using namespace std;
+typedef struct cell
+{
+	int val;
+	struct cell* next;
+}CELL;
+
+void create(CELL* list, int val);
+void index(CELL* list);
 
 int main()
 {
-#pragma region
-	
-#pragma endregion
+	int val;
+	//ï¿½æ“ªï¿½ÌƒZï¿½ï¿½ï¿½ï¿½éŒ¾
+	CELL head;
+	head.next = nullptr;
 
-	list<const char*>Station = { "Tokyo","Kanda","Akihabara","Okachimachi","Ueno","Uguisudani",
-						"Nippori","Tabata","Komagome","Sugamo","Otsuka" ,
-						"Ikebukuro","Mejiro","Takadanobaba","Shin-Okubo","Shinjuku",
-						"Yoyogi","Harajuku","Shibuya","Ebisu","Meguro","Gotanda","Osaki",
-						"Shinagawa","Tamachi","Hamamatsutyo","Shinbashi",
-						"Yurakutyo" };
-	
-	cout << "---1970”N---\n";
-	for (auto itr = Station.begin(); itr != Station.end(); ++itr)
+	while (true)
 	{
-		printf("%s\n", *itr);
-	}
+		printf(" \n");
 
-	//¼“ú•é—¢‚ð’Ç‰Á
-	for (auto itr = Station.begin(); itr != Station.end(); ++itr)
-	{
-		if (*itr == "Tabata")
-		{
-			itr = Station.insert(itr, "Nishinippori");
-			itr++;
-		}
-	}
+		scanf_s("%d", &val);
 
-	cout << "---2019”N---\n";
-	for (auto itr = Station.begin(); itr != Station.end(); ++itr)
-	{
-		printf("%s\n", *itr);
-	}
+		create(&head, val);
 
-	//‚—ÖƒQ[ƒgƒEƒFƒC‚ð’Ç‰Á
-	for (auto itr = Station.begin(); itr != Station.end(); ++itr)
-	{
-		if (*itr == "Tamachi")
-		{
-			itr = Station.insert(itr, "Takanawa Gateway");
-			itr++;
-		}
+		index(&head);
 	}
-
-	cout << "---2022”N---\n";
-	for (auto itr = Station.begin(); itr != Station.end(); ++itr)
-	{
-		printf("%s\n", *itr);
-	}
-
 	return 0;
+}
+
+void create(CELL* list, int val) {
+	CELL* NewCell;
+	NewCell = (CELL*)malloc(sizeof(CELL));
+
+	NewCell->val = val;
+	NewCell->next = nullptr;
+
+	while (list->next != nullptr) {
+		list = list->next;
+	}
+	list->next = NewCell;
+}
+
+void index(CELL* list)
+{
+	while (list->next != nullptr)
+	{
+		list = list->next;
+		printf("[%d]\n", list->val);
+	}
 }
 
 
