@@ -18,7 +18,7 @@ int main()
 						"Yoyogi","Harajuku","Shibuya","Ebisu","Meguro","Gotanda","Osaki",
 						"Shinagawa","Tamachi","Hamamatsutyo","Shinbashi",
 						"Yurakutyo" };
-
+	
 	cout << "---1970”N---\n";
 	for (auto itr = Station.begin(); itr != Station.end(); ++itr)
 	{
