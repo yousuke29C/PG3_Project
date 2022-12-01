@@ -32,6 +32,7 @@ int main()
 		//リスト一覧の表示
 		Index(&head);
 	}
+
 	return 0;
 }
 
